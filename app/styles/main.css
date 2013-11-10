@@ -250,17 +250,31 @@ code{
   background-image: url(/images/nba_home_screen.jpg);
 }
 #nba-logo{
-  height: 250px;
-  transform-origin: center center 50px;
+  height: 450px;
+  transform-origin: center center 150px;
+  opacity: 0.5;
 }
-
+#plexio{
+  background-color: #fff;
+  color: black;
+}
+#plexio a{
+  color: black;
+}
 .project{
-  height: 250px;
+  height: 350px;
   overflow: hidden;
 }
 .project a{
   display: block;
   text-align: center;
+}
+#plexio svg>g{
+  transform-origin: 250px 150px;
+  transition: transform 1s ease-out;
+}
+.anim{
+  transform: rotate(-720deg);
 }
 
 /* ==========================================================================
