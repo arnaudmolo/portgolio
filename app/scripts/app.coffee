@@ -2,21 +2,26 @@ define ['jquery', 'd3'], ($, d3) ->
   'use strict'
   new ->
 
+
     articles = $ 'header>article'
     ouvertureAnimation = $ '#ouverture animate'
     letter = $ '#letter'
     header = $ 'body>header'
     nba_logo = document.getElementById 'nba-logo'
+    plexio_logo = document.getElementById 'plexio-logo'
     $document = $ document
     $window = $ window
 
     positionNba = (event) ->
+
       rotateY = ((event.x / $window.width()) - 0.5) * 10
       rotateX = (((event.y + window.pageYOffset) / $document.height()) - 0.5) * 10
 
-      nba_logo.style.webkitTransform = 
+      nba_logo.style[Modernizr.prefixed('transform')] =
         "rotateX(" + rotateX + "deg) rotateY(" + -rotateY + "deg) rotateZ(0deg) translate( 0, -50px)"
 
+      plexio_logo.style[Modernizr.prefixed('transform')] =
+        "rotateX(" + rotateX * 2 + "deg) rotateY(" + - rotateY * 2 + "deg) rotateZ(0deg) translate( 0, -50px)"
     $('#morning>div.center').load '/images/coffe.svg'
     $('#afternoon>div.center').load '/images/crayon.svg'
     $('#evening>div.center').load '/images/beer.svg'
@@ -117,8 +122,13 @@ define ['jquery', 'd3'], ($, d3) ->
         main_grp.attr 'class', 'anim'
       , 1
       
-      
+    runChart = (event) ->
+     if plexio_logo.getClientRects()[0].top - window.pageYOffset <= 0
+       drawPlexio()
+       document.removeEventListener 'scroll', runChart
 
-    drawPlexio()
+    runChart()
+
+    document.addEventListener 'scroll', runChart, false
 
     return

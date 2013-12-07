@@ -264,6 +264,7 @@ code{
 .project{
   height: 350px;
   overflow: hidden;
+  position: relative;
 }
 .project a{
   display: block;
@@ -273,10 +274,24 @@ code{
   transform-origin: 250px 150px;
   transition: transform 1s ease-out;
 }
+#plexio-logo{
+  transform-origin: center center 150px;
+}
 .anim{
   transform: rotate(-720deg);
 }
 
+.project aside{
+  position: absolute;
+  top: 350px;
+  transition: top .5s ease;
+}
+.project:hover aside{
+  top: 300px;
+}
+.project aside a{
+  display: inline-block;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */

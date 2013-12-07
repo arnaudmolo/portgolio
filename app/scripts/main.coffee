@@ -7,4 +7,3 @@ require.config
       exports: 'd3'
 
 require ["app", "jquery"], (app) ->
-  # use app here
